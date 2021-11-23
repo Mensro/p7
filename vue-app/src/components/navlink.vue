@@ -1,18 +1,17 @@
+<template>
+
+<div class="Navlink">bbb</div>
+    
+</template>
 <script>
 export default {
-    name: 'homelink',
-    props: ['url', 'text'],
-    
+  name: 'Navlink',
+  props: {
+    msg: String
+  }
 }
 </script>
-
-<template>
-    <a href="url">{{ text }}</a>
-</template>
 <style>
-a {
-    text-decoration: none;
 
-}
 
 </style>
