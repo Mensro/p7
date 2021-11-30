@@ -10,7 +10,6 @@ module.exports = (app) => {
   router.get("/", posts.findAll);
 
   // Retrieve all published Tutorials
-  router.get("/published", posts.findAllPublished);
 
   // Retrieve a single post with id
   router.get("/:id", posts.findOne);
@@ -22,7 +21,6 @@ module.exports = (app) => {
   router.delete("/:id", posts.delete);
 
   // Delete all Tutorials
-  router.delete("/", posts.deleteAll);
 
   app.use("/api/posts", router);
 };
