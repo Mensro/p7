@@ -1,31 +1,95 @@
-<template>
-	<div id="app">
+<template >
+	<div class="color" id="app">
 		<div id="nav">
-			<router-link to="/">Home</router-link> | <router-link to="/about">A propos</router-link> |
-			<router-link to="/login">Login</router-link>
+
+			<nav class="navbar navbar-expand-lg navbar-light colornav  rounded-bottom shadow">
+  <div class="container-fluid d-flex  ">
+	<router-link class="navbar-brand text-white HomeLogSing" to="/home"><img class="logo " src="..\src\assets\icon-left-font-monochrome-black.png" alt=""></router-link>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+	
+	
+    <div class="collapse navbar-collapse justify-content-between " id="navbarNavDropdown">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+			
+          <router-link class="nav-link " to="/home">Home</router-link>
+        </li>
+        <li class="nav-item">
+          <router-link class="nav-link " to="/">Login</router-link>
+        </li>
+        <li class="nav-item">
+          <router-link class="nav-link " to="/SingUp">SingUp</router-link>
+        </li>
+		<li class="nav-item ">
+        <div class="nav-link d-flex justify-content-center  align-items-center feed-text px-2"><i class="dotOnline"	src="..\src\assets\dot.svg" ></i>
+         <div class=" ml-1"><span class="font-weight-bold"> UserName</span></div>
+                </div>
+		</li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
 		</div>
 		<router-view />
 	</div>
 </template>
 
 <style>
+body{
+	background: radial-gradient(#f6eded, #cfd4d7);
+}
+.dotOnline{
+	width: 15px;
+	height: 15px;
+	margin-right: 5px;
+	
+	background: rgb(80, 216, 80);
+	box-shadow: solid grey 15px, 15px;
+	border-radius: 105%;
+}
+.navlink{
+	margin: 10%;
+}
+.navbar-toggler{
+	
+	border: 1px solid  white;
+}
+
+.colornav{
+	background: rgb(255, 255, 255);
+
+}
+
+.logo{
+	
+	width: 10em;
+
+	
+}
+
 #app {
+	min-height: 920px;
 	font-family: 'Avenir', Helvetica, Arial, sans-serif;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 	text-align: center;
 	color: #2c3e50;
+	
+	
 }
-#nav {
-	padding: 30px;
-}
+
+
+
+
 
 #nav a {
 	font-weight: bold;
 	color: #2c3e50;
 }
 
-#nav a.router-link-exact-active {
-	color: #42b983;
-}
+
 </style>

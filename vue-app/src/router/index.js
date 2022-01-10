@@ -1,14 +1,15 @@
 import { createRouter, createWebHashHistory } from "vue-router";
 import Home from "../views/Home.vue";
-import Test from "../views/Test.vue";
 import Login from "../views/Login.vue";
 import About from "../views/About.vue";
+import SingUp from "../views/SingUp.vue";
+import ForgotPassword from "../views/ForgotPassword";
 
 const routes = [
   {
     path: "/",
-    name: "Home",
-    component: Home,
+    name: "Login",
+    component: Login,
   },
   {
     path: "/about",
@@ -20,14 +21,19 @@ const routes = [
   },
 
   {
-    path: "/test",
-    name: "test",
-    component: Test,
+    path: "/home",
+    name: "Home",
+    component: Home,
   },
   {
-    path: "/login",
-    name: "login",
-    component: Login,
+    path: "/SingUp",
+    name: "SingUp",
+    component: SingUp,
+  },
+  {
+    path: "/ForgotPassword",
+    name: "ForgotPassword",
+    component: ForgotPassword,
   },
 ];
 
