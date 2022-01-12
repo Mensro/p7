@@ -3,7 +3,7 @@ import Home from "../views/Home.vue";
 import Login from "../views/Login.vue";
 import About from "../views/About.vue";
 import SingUp from "../views/SingUp.vue";
-import ForgotPassword from "../views/ForgotPassword";
+import UserSetting from "../views/UserSetting";
 
 const routes = [
   {
@@ -31,9 +31,9 @@ const routes = [
     component: SingUp,
   },
   {
-    path: "/ForgotPassword",
-    name: "ForgotPassword",
-    component: ForgotPassword,
+    path: "/UserSetting",
+    name: "UserSetting",
+    component: UserSetting,
   },
 ];
 

@@ -1,6 +1,3 @@
-const dbConfig = require("../config/db.config.js");
-const Sequelize = require("sequelize");
-
 module.exports = (sequelize, Sequelize) => {
   const Post = sequelize.define("post", {
     name: {

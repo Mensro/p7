@@ -1,20 +1,25 @@
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-
-const User = require("../models/User");
-
 const db = require("../models");
-
-const Op = db.Sequelize.Op;
+const User = db.users;
 
 exports.signup = (req, res, next) => {
+  console.log("Cl1", req.body.user.password);
+  console.log("cl2", req.body);
+
   bcrypt
-    .hash(req.body.password, 10)
+    .hash(req.body.user.password, 10)
     .then((hash) => {
+      console.log("Cl2", hash);
+      console.log("bug", User);
+
       const user = new User({
-        email: req.body.email,
-        password: hash,
+        username: req.body.user.username,
+        email: req.body.user.email,
+        hashedPassword: hash,
       });
+      console.log("cl3", user);
+
       user
         .save()
         .then(() => res.status(201).json({ message: "utilisateur crée !" }))

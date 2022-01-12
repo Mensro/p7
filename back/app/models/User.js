@@ -1,5 +1,4 @@
-const { Sequelize, Op, Model, DataTypes } = require("sequelize");
-const sequelize = new Sequelize("sqlite::memory:");
+const { DataTypes } = require("sequelize");
 
 module.exports = (sequelize, Sequelize) => {
   const User = sequelize.define("user", {
@@ -16,7 +15,7 @@ module.exports = (sequelize, Sequelize) => {
     hashedPassword: {
       type: DataTypes.STRING(64),
       validate: {
-        is: /^[0-9a-f]{64}$/i,
+        is: /^\$2[ayb]\$.{56}$/i,
       },
     },
     email: {

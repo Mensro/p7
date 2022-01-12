@@ -1,6 +1,6 @@
 <template >
 	<div class="color" id="app">
-		<div id="nav">
+		<div id="nav ">
 
 			<nav class="navbar navbar-expand-lg navbar-light colornav  rounded-bottom shadow">
   <div class="container-fluid d-flex  ">
@@ -11,13 +11,14 @@
 
 	
 	
-    <div class="collapse navbar-collapse justify-content-between " id="navbarNavDropdown">
-      <ul class="navbar-nav">
+    <div class="collapse navbar-collapse justify-content-between  " id="navbarNavDropdown">
+      <ul class="navbar-nav align-items-center">
         <li class="nav-item">
 			
           <router-link class="nav-link " to="/home">Home</router-link>
         </li>
         <li class="nav-item">
+			
           <router-link class="nav-link " to="/">Login</router-link>
         </li>
         <li class="nav-item">
@@ -25,7 +26,7 @@
         </li>
 		<li class="nav-item ">
         <div class="nav-link d-flex justify-content-center  align-items-center feed-text px-2"><i class="dotOnline"	src="..\src\assets\dot.svg" ></i>
-         <div class=" ml-1"><span class="font-weight-bold"> UserName</span></div>
+         <div class=" ml-1"><router-link class="nav-link " to="/UserSetting">UserName</router-link></div>
                 </div>
 		</li>
       </ul>
