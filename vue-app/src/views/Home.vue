@@ -20,6 +20,14 @@
                 <h6 class="text-black-50 mt-2">
                   What's on your mind ? | CKEDITOR ? |
                 </h6>
+                <form @submit.prevent="userPost" class="text-black-50 mt-2">
+                  <input
+                    v-model="description"
+                    type="description"
+                    id="description"
+                    class="color form-control form-control-lg"
+                  />
+                </form>
               </div>
               <div class="feed-icon px-2">
                 <i class="fa fa-long-arrow-up text-black-50"></i>
@@ -43,12 +51,11 @@
                   >
                     <img
                       class="rounded-circle"
-                      src="https://i.imgur.com/aoKusnD.jpg"
+                      src="https://pbs.twimg.com/media/FCJQu2QWYAMo5Vg.jpg"
                       width="45"
                     />
                     <div class="d-flex flex-column flex-wrap ml-2">
-                      <span class="font-weight-bold"
-                        >Jean michmich text only</span
+                      <span class="font-weight-bold">traytonette text only</span
                       ><span class="text-black-50 time">40 minutes ago</span>
                     </div>
                   </div>
@@ -88,12 +95,12 @@
                   >
                     <img
                       class="rounded-circle"
-                      src="https://i.imgur.com/aoKusnD.jpg"
+                      src="https://pbs.twimg.com/media/FCJQu2QWYAMo5Vg.jpg"
                       width="45"
                     />
                     <div class="d-flex flex-column flex-wrap ml-2">
                       <span class="font-weight-bold"
-                        >Jean michmich image only</span
+                        >traytonette image only</span
                       ><span class="text-black-50 time">40 minutes ago</span>
                     </div>
                   </div>
@@ -105,7 +112,7 @@
               <div class="feed-image p-2 px-3">
                 <img
                   class="img-fluid img-responsive"
-                  src="https://i.imgur.com/aoKusnD.jpg"
+                  src="https://pbs.twimg.com/media/FCJQu2QWYAMo5Vg.jpg"
                 />
               </div>
               <div class="d-flex justify-content-end socials p-2 py-3">
@@ -131,12 +138,12 @@
                   >
                     <img
                       class="rounded-circle"
-                      src="https://i.imgur.com/aoKusnD.jpg"
+                      src="https://pbs.twimg.com/media/FCJQu2QWYAMo5Vg.jpg"
                       width="45"
                     />
                     <div class="d-flex flex-column flex-wrap ml-2">
                       <span class="font-weight-bold"
-                        >Jean michmich image + text</span
+                        >traytonette image + text</span
                       ><span class="text-black-50 time">40 minutes ago</span>
                     </div>
                   </div>
@@ -148,7 +155,7 @@
               <div class="feed-image p-2 px-3">
                 <img
                   class="img-fluid img-responsive"
-                  src="https://i.imgur.com/aoKusnD.jpg"
+                  src="https://pbs.twimg.com/media/FCJQu2QWYAMo5Vg.jpg"
                 />
               </div>
               <div class="p-2 px-3">
@@ -176,7 +183,29 @@
 
 export default {
   data() {
-    return {};
+    return {
+      description: "",
+      imageUrl: "",
+    };
+  },
+  methods: {
+    async userPost() {
+      console.log(this.imageUrl, this.description);
+
+      await fetch("http://localhost:8080/api/posts", {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-type": "application/json",
+        },
+        body: JSON.stringify({
+          user: {
+            imageUrl: this.imageUrl,
+            description: this.description,
+          },
+        }),
+      });
+    },
   },
 };
 </script>

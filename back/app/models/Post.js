@@ -2,7 +2,7 @@ module.exports = (sequelize, Sequelize) => {
   const Post = sequelize.define("post", {
     name: {
       type: Sequelize.STRING,
-      allowNull: false,
+      allowNull: true,
       unique: false,
     },
     description: {
@@ -12,7 +12,7 @@ module.exports = (sequelize, Sequelize) => {
     },
     imageUrl: {
       type: Sequelize.STRING,
-      allowNull: false,
+      allowNull: true,
       unique: false,
     },
     userId: {
@@ -22,22 +22,22 @@ module.exports = (sequelize, Sequelize) => {
     },
     likes: {
       type: Sequelize.STRING,
-      allowNull: false,
+      allowNull: true,
       unique: false,
     },
     dislikes: {
       type: Sequelize.STRING,
-      allowNull: false,
+      allowNull: true,
       unique: false,
     },
     usersLiked: {
       type: Sequelize.STRING,
-      allowNull: false,
+      allowNull: true,
       unique: false,
     },
     usersDisliked: {
       type: Sequelize.STRING,
-      allowNull: false,
+      allowNull: true,
       unique: false,
     },
   });

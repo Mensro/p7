@@ -29,13 +29,14 @@ exports.signup = (req, res, next) => {
 };
 
 exports.login = (req, res, next) => {
-  User?.findOne({ email: req.body.email })
+  User?.findOne({ email: req.body.user.email })
     .then((user) => {
       if (!user) {
         return res.status(401).json({ error: "utilisateur non trouvé !" });
       }
+
       bcrypt
-        .compare(req.body.password, user.password)
+        .compare(req.body.user.password, user.hashedPassword)
         .then((valid) => {
           if (!valid) {
             return res.status(401).json({ error: "mot de passe incorrect !" });

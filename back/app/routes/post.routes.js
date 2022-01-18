@@ -1,10 +1,11 @@
 module.exports = (app) => {
   const posts = require("../controllers/post.js");
-
+  const auth = require("../middleware/auth");
+  const multer = require("../middleware/multer-config");
   var router = require("express").Router();
 
   // Create a new post
-  router.post("/", posts.create);
+  router.post("/", auth, multer, posts.create);
 
   // Retrieve all Tutorials
   router.get("/", posts.findAll);
