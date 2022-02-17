@@ -20,7 +20,7 @@
                 <h6 class="text-black-50 mt-2">
                   What's on your mind ? | CKEDITOR ? |
                 </h6>
-                <form @submit.prevent="userPost" class="text-black-50 mt-2">
+                <form @submit.prevent="createPost" class="text-black-50 mt-2">
                   <input
                     v-model="description"
                     type="description"
@@ -186,26 +186,32 @@ export default {
     return {
       description: "",
       imageUrl: "",
+      posts: [],
     };
   },
   methods: {
-    async userPost() {
-      console.log(this.imageUrl, this.description);
-
-      await fetch("http://localhost:8080/api/posts", {
+    async createPost() {
+      await fetch("http://localhost:8082/api/posts", {
         method: "POST",
         headers: {
-          Accept: "application/json",
           "Content-type": "application/json",
+          authorization: "Bearer " + this.$store.state.token,
         },
+
         body: JSON.stringify({
-          user: {
-            imageUrl: this.imageUrl,
-            description: this.description,
-          },
+          imageUrl: this.imageUrl,
+          description: this.description,
         }),
       });
+
+      console.log("userpost", this.description);
     },
+    async getAllPost() {
+      this.posts = [{ description: "test" }, { description: "test2" }];
+    },
+  },
+  mounted() {
+    this.getAllPost();
   },
 };
 </script>

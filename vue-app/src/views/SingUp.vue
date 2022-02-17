@@ -75,7 +75,7 @@ export default {
     async userSubmit() {
       console.log(this.username, this.email, this.password);
 
-      await fetch("http://localhost:8080/api/users/signup", {
+      await fetch("http://localhost:8082/api/users/signup", {
         method: "POST",
         headers: {
           Accept: "application/json",
@@ -89,6 +89,7 @@ export default {
           },
         }),
       });
+      alert("utilisateur crée");
     },
   },
 };

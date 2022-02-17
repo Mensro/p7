@@ -67,7 +67,7 @@ export default {
     async userLogin() {
       console.log(this.email, this.password);
 
-      await fetch("http://localhost:8080/api/users/login", {
+      const res = await fetch("http://localhost:8082/api/users/login", {
         method: "POST",
         headers: {
           Accept: "application/json",
@@ -80,6 +80,13 @@ export default {
           },
         }),
       });
+
+      const data = await res.json();
+      const token = data.token;
+      this.$store.commit("login", { token });
+      console.log("store", data.user);
+
+      //this.$store.state.token
     },
   },
 };

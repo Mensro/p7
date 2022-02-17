@@ -29,21 +29,24 @@ exports.signup = (req, res, next) => {
 };
 
 exports.login = (req, res, next) => {
-  User?.findOne({ email: req.body.user.email })
+  User?.findOne({ where: { email: req.body.user.email } })
     .then((user) => {
+      console.log("user", user);
       if (!user) {
         return res.status(401).json({ error: "utilisateur non trouvé !" });
       }
-
+      console.log("userpw", req.body.user.password);
+      console.log("hash", user.hashedPassword);
       bcrypt
         .compare(req.body.user.password, user.hashedPassword)
         .then((valid) => {
           if (!valid) {
             return res.status(401).json({ error: "mot de passe incorrect !" });
           }
+
           res.status(200).json({
-            userId: user._id,
-            token: jwt.sign({ userId: user._id }, "RANDOM_TOKEN_SECRET", {
+            userId: user.id,
+            token: jwt.sign({ userId: user.id }, "RANDOM_TOKEN_SECRET", {
               expiresIn: "24h",
             }),
           });

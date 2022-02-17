@@ -24,6 +24,9 @@ const routes = [
     path: "/home",
     name: "Home",
     component: Home,
+    meta: {
+      requiresAuth: true,
+    },
   },
   {
     path: "/SingUp",
@@ -40,6 +43,18 @@ const routes = [
 const router = createRouter({
   history: createWebHashHistory(),
   routes,
+});
+/* ==> */
+router.beforeEach((to, from, next) => {
+  if (to.matched.some((record) => record.meta.requiresAut)) {
+    if (this.$store.getters.isLoggedIn) {
+      next();
+      return;
+    }
+    next("/login");
+  } else {
+    next();
+  }
 });
 
 export default router;

@@ -1,12 +1,40 @@
-import { createStore } from 'vuex'
+import { createStore } from "vuex";
+const persistedState = localStorage.getItem("store");
 
-export default createStore({
-  state: {
-  },
+const store = createStore({
+  state: persistedState
+    ? JSON.parse(persistedState)
+    : {
+        token: "",
+        userInfos: {
+          username: "",
+          email: "",
+          userId: "",
+          photo: "",
+        },
+      },
+
   mutations: {
+    login(state, { token }) {
+      state.token = token;
+    },
+
+    logout(state) {
+      state.token = "";
+    },
   },
-  actions: {
+  computed: {},
+
+  actions: {},
+
+  getters: {
+    isLoggedIn: (state) => !!state.token,
   },
-  modules: {
-  }
-})
+
+  modules: {},
+});
+store.subscribe((mutation, state) => {
+  localStorage.setItem("store", JSON.stringify(state));
+  console.log("mutState", mutation, state);
+});
+export default store;

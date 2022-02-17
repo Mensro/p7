@@ -9,8 +9,7 @@ exports.findAll = (req, res) => {
     })
     .catch((err) => {
       res.status(500).send({
-        message:
-          err.message || "Some error occurred while retrieving tutorials.",
+        message: err.message || "Some error occurred.",
       });
     });
 };
@@ -37,23 +36,24 @@ exports.findOne = (req, res) => {
 
 exports.create = (req, res) => {
   // Validate request
-  if (!req.body.title) {
+  console.log("reqBody", req.body);
+  if (!req.body) {
     res.status(400).send({
       message: "Content can not be empty!",
     });
     return;
   }
-
+  console.log("Id", req.userId);
   // Create a post
   const post = {
     name: req.body.name,
     description: req.body.description,
     imageUrl: req.body.imageUrl,
-    userId: req.body.userId,
-    likes: req.body.likes,
-    dislikes: req.body.dislikes,
-    userLiked: req.body.userLiked,
-    userDisliked: req.body.userDisliked,
+    userId: req.userId,
+    likes: 0,
+    dislikes: 0,
+    userLiked: [],
+    userDisliked: [],
   };
 
   // Save post in the database
@@ -61,8 +61,11 @@ exports.create = (req, res) => {
     .then((data) => {
       res.send(data);
     })
+
     .catch((err) => {
+      console.log("error500", err);
       res.status(500).send({
+        ...err,
         message: err.message || "Some error occurred while creating the Post.",
       });
     });
