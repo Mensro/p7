@@ -49,7 +49,7 @@
                 </router-link>
               </li>
               <li class="nav-item">
-                <router-link class="nav-link" to="/SingUp">SingUp</router-link>
+                <router-link class="nav-link" to="/SingUp">SignUp</router-link>
               </li>
               <li class="nav-item">
                 <div
@@ -65,7 +65,7 @@
                   <i class="dotOnline" src="..\src\assets\dot.svg"></i>
                   <div class="ml-1">
                     <router-link class="nav-link" to="/UserSetting"
-                      >UserName</router-link
+                      >Mon Profile</router-link
                     >
                   </div>
                 </div>

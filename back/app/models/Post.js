@@ -40,6 +40,11 @@ module.exports = (sequelize, Sequelize) => {
       allowNull: true,
       unique: false,
     },
+    files: {
+      type: Sequelize.STRING,
+      allowNull: true,
+      unique: false,
+    },
   });
   return Post;
 };

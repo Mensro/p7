@@ -14,6 +14,14 @@
                     id="description"
                     class="color form-control form-control-lg smallformField"
                   />
+                  <input
+                    type="file"
+                    id="file"
+                    ref="myFiles"
+                    class="custom-file-input"
+                    @change="previewFiles"
+                    multiple
+                  />
                 </form>
               </div>
               <div class="feed-icon px-2">
@@ -109,6 +117,7 @@ export default {
       username: "",
       description: "",
       imageUrl: "",
+      files: [],
       posts: [
         {
           description: String,
