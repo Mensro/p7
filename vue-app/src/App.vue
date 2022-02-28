@@ -34,11 +34,19 @@
           >
             <ul class="navbar-nav align-items-center">
               <li class="nav-item">
-                <router-link class="nav-link" to="/home">Home</router-link>
+                <router-link v-if="isLoggedIn" class="nav-link" to="/home"
+                  >Home</router-link
+                >
               </li>
               <li class="nav-item">
-                <router-link class="nav-link" to="/">Login</router-link>
-                <span v-if="isLoggedIn"> | <a @click="logout">Logout</a></span>
+                <router-link class="nav-link" to="/">
+                  <span v-if="isLoggedIn">
+                    | <a @click="logout">Logout</a></span
+                  >
+                  <router-link v-else class="nav-link" to="/"
+                    >Login</router-link
+                  >
+                </router-link>
               </li>
               <li class="nav-item">
                 <router-link class="nav-link" to="/SingUp">SingUp</router-link>

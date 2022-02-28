@@ -85,6 +85,7 @@ export default {
       const token = data.token;
       this.$store.commit("login", { token });
       console.log("store", data.user);
+      window.location.href = "http://localhost:8081/home#/home";
 
       //this.$store.state.token
     },

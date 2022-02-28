@@ -1,44 +1,88 @@
 <template>
-    <form class="container py-5 h-100">
-  <div class="row d-flex justify-content-center align-items-center h-100 ">
-    <div class="form-group col-md-6">
-      <label for="inputEmail4">Email</label>
-      <input type="email" class="form-control" id="inputEmail4" placeholder="your@currentmail.com">
+  <form class="container py-5 h-100">
+    <div class="container mt-4 mb-4 p-3 d-flex justify-content-center">
+      <div class="card p-4">
+        <div
+          class="
+            image
+            d-flex
+            flex-column
+            justify-content-center
+            align-items-center
+          "
+        >
+          <button class="btn btn-secondary">
+            <img
+              src="https://i.imgur.com/wvxPV9S.png"
+              height="100"
+              width="100"
+            />
+          </button>
+          <span class="name mt-3">{{}}</span>
+
+          <div
+            class="
+              d-flex
+              flex-row
+              justify-content-center
+              align-items-center
+              gap-2
+            "
+          >
+            <span><i class="fa fa-copy"></i></span>
+          </div>
+          <div
+            class="
+              d-flex
+              flex-row
+              justify-content-center
+              align-items-center
+              mt-3
+            "
+          >
+            <span class="number"
+              >1069 <span class="follow">Followers</span></span
+            >
+          </div>
+          <div class="d-flex mt-2">
+            <button class="btn1 btn-dark">Edit image profile</button>
+          </div>
+
+          <div class="px-2 rounded mt-4 date">
+            <span class="join">Joined May,2021</span>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="form-group col-md-6">
-      <label for="inputPassword4">Password</label>
-      <input type="password" class="form-control" id="inputPassword4" placeholder="******">
+
+    <div>
+      <button type="submit" class="btn btn-danger">delete this account</button>
     </div>
-  </div>
-  
-  
-  <div class="form-row">
-    <div class="form-group col-md-6">
-      <label for="inputUserName">pseudo</label>
-      <input type="text" class="form-control" id="inputUserName" placeholder="current_username">
-    </div>
-    
-  
-  </div>
-  <div class="form-group d-flex">
-    <div class="form-check">
-      <input class="form-check-input" type="checkbox" id="gridCheck">
-      <label class="form-check-label" for="gridCheck">
-        Check me out
-      </label>
-    </div>
-  </div>
-  <div class="d-flex justify-content-between">
-  <button type="submit" class="btn btn-primary">confirm modif ?</button>
-  <button type="submit" class="btn btn-danger">delete this account</button>
-  </div>
-</form>
+  </form>
 </template>
 
 <script>
-    export default {
-        data() {
-            return {}
-        }
-    }
+export default {
+  data() {
+    return {};
+  },
+  methods: {
+    async userInfo() {
+      const response = await fetch("http://localhost:8082/api/posts", {
+        method: "GET",
+        headers: {
+          "Content-type": "application/json",
+          authorization: "Bearer " + this.$store.state.token,
+        },
+      });
+      const data = await response.json();
+      console.log("data", data);
+
+      this.posts = data;
+    },
+  },
+  mounted() {
+    this.userInfo();
+  },
+};
 </script>

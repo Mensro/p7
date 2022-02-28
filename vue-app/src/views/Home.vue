@@ -1,31 +1,18 @@
 <template>
   <div class="home">
-    <div class="container mt-4 mb-5">
+    <div v-if="isLoggedIn" class="container mt-4 mb-5">
       <div class="d-flex justify-content-center row">
         <div class="col-md-8">
           <div class="feed p-2">
-            <div
-              class="
-                d-flex
-                flex-row
-                justify-content-between
-                align-items-center
-                p-2
-                bg-white
-                border
-                shadow
-              "
-            >
-              <div class="feed-text px-2">
-                <h6 class="text-black-50 mt-2">
-                  What's on your mind ? | CKEDITOR ? |
-                </h6>
+            <div class="">
+              <div class="feed-text">
+                <h6 class="text-black-50 mt-2">What's on your mind ?</h6>
                 <form @submit.prevent="createPost" class="text-black-50 mt-2">
                   <input
                     v-model="description"
                     type="description"
                     id="description"
-                    class="color form-control form-control-lg"
+                    class="color form-control form-control-lg smallformField"
                   />
                 </form>
               </div>
@@ -37,8 +24,6 @@
             <div class="bg-white border mt-2 shadow">
               <div class="postsList">
                 <div class="postsItem" v-for="post in posts" :key="post.id">
-                  {{ post.description }}
-
                   <div class="bg-white border mt-2 shadow">
                     <div>
                       <div
@@ -66,11 +51,12 @@
                             width="45"
                           />
                           <div class="d-flex flex-column flex-wrap ml-2">
-                            <span class="font-weight-bold"
-                              >traytonette image only</span
-                            ><span class="text-black-50 time"
-                              >40 minutes ago</span
-                            >
+                            <span class="font-weight-bold">{{
+                              post.username
+                            }}</span
+                            ><span class="text-black-50 time">{{
+                              post.createdAt
+                            }}</span>
                           </div>
                         </div>
                         <div class="feed-icon px-2">
@@ -80,7 +66,6 @@
                     </div>
                     <div class="feed-image p-2 px-3">
                       {{ post.description }}
-                      {{ post.imageUrl }}
                     </div>
                     <div class="d-flex justify-content-end socials p-2 py-3">
                       <i class="fa fa-thumbs-up"></i
@@ -100,130 +85,7 @@
                     p-2
                     border-bottom
                   "
-                >
-                  <div
-                    class="d-flex flex-row align-items-center feed-text px-2"
-                  >
-                    <img
-                      class="rounded-circle"
-                      src="https://pbs.twimg.com/media/FCJQu2QWYAMo5Vg.jpg"
-                      width="45"
-                    />
-                    <div class="d-flex flex-column flex-wrap ml-2">
-                      <span class="font-weight-bold">traytonette text only</span
-                      ><span class="text-black-50 time">40 minutes ago</span>
-                    </div>
-                  </div>
-                  <div class="feed-icon px-2">
-                    <i class="fa fa-ellipsis-v text-black-50"></i>
-                  </div>
-                </div>
-              </div>
-              <div class="p-2 px-3">
-                <span
-                  >Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                  Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                  laboris nisi ut aliquip ex ea commodo consequat.</span
-                >
-              </div>
-              <div class="d-flex justify-content-end socials p-2 py-3">
-                <i class="fa fa-thumbs-up"></i><i class="fa fa-comments-o"></i
-                ><i class="fa fa-share"></i>
-              </div>
-            </div>
-
-            <div class="bg-white border mt-2 shadow">
-              <div>
-                <div
-                  class="
-                    d-flex
-                    flex-row
-                    justify-content-between
-                    align-items-center
-                    p-2
-                    border-bottom
-                  "
-                >
-                  <div
-                    class="d-flex flex-row align-items-center feed-text px-2"
-                  >
-                    <img
-                      class="rounded-circle"
-                      src="https://pbs.twimg.com/media/FCJQu2QWYAMo5Vg.jpg"
-                      width="45"
-                    />
-                    <div class="d-flex flex-column flex-wrap ml-2">
-                      <span class="font-weight-bold"
-                        >traytonette image only</span
-                      ><span class="text-black-50 time">40 minutes ago</span>
-                    </div>
-                  </div>
-                  <div class="feed-icon px-2">
-                    <i class="fa fa-ellipsis-v text-black-50"></i>
-                  </div>
-                </div>
-              </div>
-              <div class="feed-image p-2 px-3">
-                <img
-                  class="img-fluid img-responsive"
-                  src="https://pbs.twimg.com/media/FCJQu2QWYAMo5Vg.jpg"
-                />
-              </div>
-              <div class="d-flex justify-content-end socials p-2 py-3">
-                <i class="fa fa-thumbs-up"></i><i class="fa fa-comments-o"></i
-                ><i class="fa fa-share"></i>
-              </div>
-            </div>
-
-            <div class="bg-white border mt-2 shadow">
-              <div>
-                <div
-                  class="
-                    d-flex
-                    flex-row
-                    justify-content-between
-                    align-items-center
-                    p-2
-                    border-bottom
-                  "
-                >
-                  <div
-                    class="d-flex flex-row align-items-center feed-text px-2"
-                  >
-                    <img
-                      class="rounded-circle"
-                      src="https://pbs.twimg.com/media/FCJQu2QWYAMo5Vg.jpg"
-                      width="45"
-                    />
-                    <div class="d-flex flex-column flex-wrap ml-2">
-                      <span class="font-weight-bold"
-                        >traytonette image + text</span
-                      ><span class="text-black-50 time">40 minutes ago</span>
-                    </div>
-                  </div>
-                  <div class="feed-icon px-2">
-                    <i class="fa fa-ellipsis-v text-black-50"></i>
-                  </div>
-                </div>
-              </div>
-              <div class="feed-image p-2 px-3">
-                <img
-                  class="img-fluid img-responsive"
-                  src="https://pbs.twimg.com/media/FCJQu2QWYAMo5Vg.jpg"
-                />
-              </div>
-              <div class="p-2 px-3">
-                <span
-                  >Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                  Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                  laboris nisi ut aliquip ex ea commodo consequat.</span
-                >
-              </div>
-              <div class="d-flex justify-content-end socials p-2 py-3">
-                <i class="fa fa-thumbs-up"></i><i class="fa fa-comments-o"></i
-                ><i class="fa fa-share"></i>
+                ></div>
               </div>
             </div>
           </div>
@@ -237,8 +99,14 @@
 // @ is an alias to /src
 
 export default {
+  computed: {
+    isLoggedIn: function () {
+      return this.$store.getters.isLoggedIn;
+    },
+  },
   data() {
     return {
+      username: "",
       description: "",
       imageUrl: "",
       posts: [
@@ -262,8 +130,10 @@ export default {
         body: JSON.stringify({
           imageUrl: this.imageUrl,
           description: this.description,
+          username: this.username,
         }),
       });
+      await this.getAllPost();
 
       console.log("userpost", this.description);
     },
@@ -278,7 +148,7 @@ export default {
       const data = await response.json();
       console.log("data", data);
 
-      this.posts = data;
+      this.posts = data.reverse();
     },
   },
   mounted() {

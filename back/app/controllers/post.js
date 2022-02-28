@@ -1,6 +1,6 @@
 const db = require("../models");
 const Post = db.posts;
-const Op = db.Sequelize.Op;
+const User = db.users;
 
 exports.findAll = (req, res) => {
   Post.findAll()
@@ -43,32 +43,38 @@ exports.create = (req, res) => {
     });
     return;
   }
-  console.log("Id", req.userId);
-  // Create a post
-  const post = {
-    name: req.body.name,
-    description: req.body.description,
-    imageUrl: req.body.imageUrl,
-    userId: req.userId,
-    likes: 0,
-    dislikes: 0,
-    userLiked: [],
-    userDisliked: [],
-  };
+  User.findByPk(req.userId).then((user) => {
+    console.log(user);
 
-  // Save post in the database
-  Post.create(post)
-    .then((data) => {
-      res.send(data);
-    })
+    console.log("Id", req.userId);
+    // Create a post
+    const post = {
+      name: req.body.name,
+      description: req.body.description,
+      imageUrl: req.body.imageUrl,
+      userId: req.userId,
+      username: user.username,
+      likes: 0,
+      dislikes: 0,
+      userLiked: [],
+      userDisliked: [],
+    };
 
-    .catch((err) => {
-      console.log("error500", err);
-      res.status(500).send({
-        ...err,
-        message: err.message || "Some error occurred while creating the Post.",
+    // Save post in the database
+    Post.create(post)
+      .then((data) => {
+        res.send(data);
+      })
+
+      .catch((err) => {
+        console.log("error500", err);
+        res.status(500).send({
+          ...err,
+          message:
+            err.message || "Some error occurred while creating the Post.",
+        });
       });
-    });
+  });
 };
 
 exports.update = (req, res) => {
