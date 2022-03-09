@@ -68,7 +68,7 @@ export default {
   },
   methods: {
     async userInfo() {
-      const response = await fetch("http://localhost:8082/api/posts", {
+      const response = await fetch("http://localhost:8082/api/users/login", {
         method: "GET",
         headers: {
           "Content-type": "application/json",

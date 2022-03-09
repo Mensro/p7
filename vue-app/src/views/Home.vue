@@ -19,7 +19,7 @@
                     id="file"
                     ref="myFiles"
                     class="custom-file-input"
-                    @change="previewFiles"
+                    @change="changeFile"
                     multiple
                   />
                 </form>
@@ -75,6 +75,7 @@
                     <div class="feed-image p-2 px-3">
                       {{ post.description }}
                     </div>
+                    <img :src="post.imageUrl" alt="" />
                     <div class="d-flex justify-content-end socials p-2 py-3">
                       <i class="fa fa-thumbs-up"></i
                       ><i class="fa fa-comments-o"></i
@@ -114,33 +115,30 @@ export default {
   },
   data() {
     return {
-      username: "",
       description: "",
-      imageUrl: "",
-      files: [],
-      posts: [
-        {
-          description: String,
-          imageUrl: String,
-          createdAt: String,
-        },
-      ],
+      image: null,
+
+      posts: [],
     };
   },
+
   methods: {
+    changeFile(event) {
+      this.image = event.target.files[0];
+      console.log("image change file", this.image);
+    },
     async createPost() {
+      console.log("image cratedpost", this.image);
+      const body = new FormData();
+      body.append("description", this.description);
+      body.append("image", this.image);
       await fetch("http://localhost:8082/api/posts", {
         method: "POST",
         headers: {
-          "Content-type": "application/json",
           authorization: "Bearer " + this.$store.state.token,
         },
 
-        body: JSON.stringify({
-          imageUrl: this.imageUrl,
-          description: this.description,
-          username: this.username,
-        }),
+        body,
       });
       await this.getAllPost();
 

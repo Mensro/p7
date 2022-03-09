@@ -49,15 +49,13 @@ exports.create = (req, res) => {
     console.log("Id", req.userId);
     // Create a post
     const post = {
-      name: req.body.name,
       description: req.body.description,
-      imageUrl: req.body.imageUrl,
+      imageUrl: `${req.protocol}://${req.get("host")}/images/${
+        req.file.filename
+      }`,
+
       userId: req.userId,
       username: user.username,
-      likes: 0,
-      dislikes: 0,
-      userLiked: [],
-      userDisliked: [],
     };
 
     // Save post in the database

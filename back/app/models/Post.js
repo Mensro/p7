@@ -20,31 +20,6 @@ module.exports = (sequelize, Sequelize) => {
       allowNull: true,
       unique: false,
     },
-    likes: {
-      type: Sequelize.STRING,
-      allowNull: true,
-      unique: false,
-    },
-    dislikes: {
-      type: Sequelize.STRING,
-      allowNull: true,
-      unique: false,
-    },
-    usersLiked: {
-      type: Sequelize.STRING,
-      allowNull: true,
-      unique: false,
-    },
-    usersDisliked: {
-      type: Sequelize.STRING,
-      allowNull: true,
-      unique: false,
-    },
-    files: {
-      type: Sequelize.STRING,
-      allowNull: true,
-      unique: false,
-    },
   });
   return Post;
 };
