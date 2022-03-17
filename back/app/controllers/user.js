@@ -55,3 +55,25 @@ exports.login = (req, res, next) => {
     })
     .catch((error) => res.status(500).json({ error }));
 };
+
+exports.delete = (req, res) => {
+  User.destroy({
+    where: { id: req.userId },
+  })
+    .then((num) => {
+      if (num == 1) {
+        res.send({
+          message: "user was deleted successfully!",
+        });
+      } else {
+        res.send({
+          message: `Cannot delete user with id=${req.userId}. Maybe user was not found!`,
+        });
+      }
+    })
+    .catch((err) => {
+      res.status(500).send({
+        message: "Could not delete user with id=" + req.userId,
+      });
+    });
+};

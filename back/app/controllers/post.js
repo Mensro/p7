@@ -48,13 +48,16 @@ exports.create = (req, res) => {
 
     console.log("Id", req.userId);
     // Create a post
+
+    const imageUrl =
+      req.file != undefined
+        ? `${req.protocol}://${req.get("host")}/images/${req.file.filename}`
+        : null;
+
     const post = {
       description: req.body.description,
-      imageUrl: `${req.protocol}://${req.get("host")}/images/${
-        req.file.filename
-      }`,
-
       userId: req.userId,
+      imageUrl: imageUrl,
       username: user.username,
     };
 

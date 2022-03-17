@@ -1,5 +1,5 @@
 <template>
-  <form class="container py-5 h-100">
+  <form @submit.prevent="userInfoDelete" class="container py-5 h-100">
     <div class="container mt-4 mb-4 p-3 d-flex justify-content-center">
       <div class="card p-4">
         <div
@@ -67,22 +67,18 @@ export default {
     return {};
   },
   methods: {
-    async userInfo() {
-      const response = await fetch("http://localhost:8082/api/users/login", {
-        method: "GET",
+    async userInfoDelete() {
+      const response = await fetch("http://localhost:8082/api/users/me", {
+        method: "DELETE",
         headers: {
-          "Content-type": "application/json",
           authorization: "Bearer " + this.$store.state.token,
         },
       });
-      const data = await response.json();
-      console.log("data", data);
-
-      this.posts = data;
+      if (response.ok) {
+        this.$store.commit("logout");
+        this.$router.push("/");
+      }
     },
-  },
-  mounted() {
-    this.userInfo();
   },
 };
 </script>
