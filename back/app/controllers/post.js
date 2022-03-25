@@ -103,10 +103,11 @@ exports.update = (req, res) => {
 };
 
 exports.delete = (req, res) => {
-  const id = req.params.id;
+  console.log(req);
+  const id = req.post.id;
 
   Post.destroy({
-    where: { id: id },
+    where: { posts: id },
   })
     .then((num) => {
       if (num == 1) {
